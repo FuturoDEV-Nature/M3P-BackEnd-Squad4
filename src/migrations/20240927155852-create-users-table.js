@@ -17,13 +17,14 @@ module.exports = {
 			type: Sequelize.STRING
 		  },
 		  sexo: {
+			allowNull: false,
 			type: Sequelize.ENUM,
 			values: ['masculino', 'feminino', 'outros']
 		  },
 		  email: {
 			allowNull: false,
 			type: Sequelize.STRING,
-			unique: true			
+			unique: true			// Validação no BD para email único
 		  },
 		  password: {
 			type: Sequelize.STRING,
@@ -32,7 +33,7 @@ module.exports = {
 		  cpf: {
 			type: Sequelize.STRING, // Mudei para STRING para lidar com zeros à esquerda
 			allowNull: false,
-			unique: true,
+			unique: true,			// Validação no BD para CPF único
 			validate: {
 			  len: [11, 11] // Validação para garantir que o CPF tenha exatamente 11 caracteres
 			}
@@ -40,6 +41,10 @@ module.exports = {
 		  data_nascimento: {
 			allowNull: false,
 			type: Sequelize.DATE
+		  },
+		  endereco: {
+			allowNull: false,
+			type: Sequelize.STRING
 		  },
 		  createdAt: {
 			allowNull: false,

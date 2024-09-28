@@ -28,6 +28,9 @@ const User = connection.define('user', {
 	data_nascimento: {
 		type: DataTypes.DATE
 	},
+	endereco:{
+		type: DataTypes.STRING
+	},
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
 })

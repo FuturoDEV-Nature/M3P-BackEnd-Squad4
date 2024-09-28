@@ -7,10 +7,18 @@ module.exports = {
 		"action",
 		{
 		  userId: {
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'user',
+				key: "id"
+			}
 		  },
 		  local_id: {
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'local',
+				key: "id"
+			}
 		  },
 		  data_visita: {
 			type: Sequelize.DATE

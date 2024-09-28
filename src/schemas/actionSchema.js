@@ -1,5 +1,6 @@
 const yup = require("yup");
 
+// Atributos desejáveis da tabela AÇÕES
 const actionSchema = yup.object().shape({
   userId: yup.number().integer(),
   local_id: yup.number().integer(),

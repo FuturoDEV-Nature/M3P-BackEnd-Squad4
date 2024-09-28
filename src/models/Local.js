@@ -1,16 +1,16 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("../database/connection");
 const User = require("./User");
-//const { hash } = require("bcryptjs");
 
 const Local = connection.define("local", {
-  name: {
-    type: DataTypes.STRING,
-  },
-  cep: {
-	type: DataTypes.STRING
-  },
-  local_endereco: {
+	name: {
+		type: DataTypes.STRING,
+	},
+	description: {
+		type: DataTypes.STRING
+	},
+	// LOCALIDADE (?) [CEP, complemento...]
+	localidade: {
     type: DataTypes.STRING,
   },
   userId: {
@@ -22,6 +22,12 @@ const Local = connection.define("local", {
       key: "id",
     },
   },
+  lat: {
+	type: DataTypes.STRING
+  },
+  lon: {
+	type: DataTypes.STRING
+  }  
 });
 User.hasMany(Local, {
   foreignKey: "userId",

@@ -15,14 +15,24 @@ module.exports = {
 		  name: {
 			type: Sequelize.STRING
 		  },
-		  cep: {
+		  description: {
 			type: Sequelize.STRING
 		  },
-		  local_endereco: {
+		  localidade: {
 			type: Sequelize.STRING
 		  },
 		  userId: {
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'user',
+				key: "id"
+			}
+		  },
+		  lat: {
+			type: Sequelize.STRING
+		  },
+		  lon: {
+			type: Sequelize.STRING
 		  },
 		  createdAt: {
 			allowNull: false,
