@@ -1,4 +1,4 @@
-const validarDescricao = (schema) => async (req, res, next) => {
+const validarDescription = (schema) => async (req, res, next) => {
   if (!req.body.nome) {
     return res
       .status(400)
@@ -50,4 +50,4 @@ const validarDescricao = (schema) => async (req, res, next) => {
   }
 };
 
-module.exports = validarDescricao;
+module.exports = validarDescription;

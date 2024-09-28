@@ -1,13 +1,13 @@
 const { connection } = require("../database/connection");
 const { DataTypes } = require("sequelize");
-const Usuario = require("./Usuario");
+const User = require("./User");
 const Local = require("./Local");
 
-const Descricao = connection.define("descricoes", {
-  usuarioId: {
+const Action = connection.define("action", {
+  userId: {
     type: DataTypes.INTEGER,
     references: {
-      model: Usuario,
+      model: User,
       key: "id",
     },
   },
@@ -33,18 +33,18 @@ const Descricao = connection.define("descricoes", {
   },
 });
 
-Usuario.hasMany(Descricao, {
-  foreignKey: "usuarioId",
+User.hasMany(Action, {
+  foreignKey: "userId",
 });
-Descricao.belongsTo(Usuario, {
-  foreignKey: "usuarioId",
-});
-
-Local.hasMany(Descricao, {
-  foreignKey: "local_id",
-});
-Descricao.belongsTo(Local, {
-  foreignKey: "local_id",
+Action.belongsTo(User, {
+  foreignKey: "userId",
 });
 
-module.exports = Descricao;
+Local.hasMany(Action, {
+  foreignKey: "local_id",
+});
+Action.belongsTo(Local, {
+  foreignKey: "local_id",
+});
+
+module.exports = Action;

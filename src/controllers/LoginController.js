@@ -1,39 +1,39 @@
 const { compare } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
-const Usuario = require("../models/Usuario");
+const User = require("../models/User");
 
 class LoginController {
   async login(req, res) {
     try {
       const email = req.body.email;
-      const senha = req.body.senha;
+      const password = req.body.password;
 
       if (!email) {
         return res.status(400).json({ error: "O email é obrigatório" });
       }
 
-      if (!senha) {
+      if (!password) {
         return res.status(400).json({ error: "O password é obrigatório" });
       }
 
-      const usuario = await Usuario.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
 
-      if (!usuario) {
+      if (!user) {
         return res.status(404).json({
-          error: "Nenhum usuário corresponde a email e senha fornecido.",
+          error: "Nenhum usuário corresponde a email e password fornecido.",
         });
       }
       /*
-      const hashSenha = await compare(senha, usuario.senha);
+      const hashSenha = await compare(password, user.password);
 
        if (hashSenha === false) {
          return res.status(400).json({ mensagem: "Conta não encontrada." });
       }
 */
       const payload = {
-        sub: usuario.id,
-        email: usuario.email,
-        nome: usuario.nome,
+        sub: user.id,
+        email: user.email,
+        nome: user.nome,
       };
 
       const token = sign(payload, process.env.SECRET_JWT);

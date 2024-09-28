@@ -1,28 +1,31 @@
 const { DataTypes } = require("sequelize");
 const { connection } = require("../database/connection");
-const Usuario = require("./Usuario");
+const User = require("./User");
 //const { hash } = require("bcryptjs");
 
-const Local = connection.define("locais", {
-  nome: {
+const Local = connection.define("local", {
+  name: {
     type: DataTypes.STRING,
+  },
+  cep: {
+	type: DataTypes.STRING
   },
   local_endereco: {
     type: DataTypes.STRING,
   },
-  usuarioId: {
+  userId: {
     type: DataTypes.INTEGER,
     references: {
       // This is a reference to another model
-      model: Usuario,
+      model: User,
       // This is the column name of the referenced model
       key: "id",
     },
   },
 });
-Usuario.hasMany(Local, {
-  foreignKey: "usuarioId",
+User.hasMany(Local, {
+  foreignKey: "userId",
 });
-Local.belongsTo(Usuario);
+Local.belongsTo(User);
 
 module.exports = Local;

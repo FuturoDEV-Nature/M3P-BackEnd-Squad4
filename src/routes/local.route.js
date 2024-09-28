@@ -4,8 +4,8 @@ const { auth } = require("../middleware/auth");
 const LocalController = require("../controllers/LocalController");
 const localSchema = require("../schemas/localSchema");
 const validarLocal = require("../middleware/validateLocal");
-const validarDescricao = require("../middleware/validateDescription");
-const descricaoSchema = require("../schemas/descricaoSchema");
+const validarDescription = require("../middleware/validateDescription");
+const actionSchema = require("../schemas/actionSchema");
 
 const localRoutes = new Router();
 
@@ -17,9 +17,9 @@ localRoutes.post(
             #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {
                 in: 'body',
-                description: 'Adiciona um novo local da natureza',
+                action: 'Adiciona um novo local da natureza',
                 schema: {
-                  $nome: "Nome do local",
+                  $name: "Nome do local",
                   $local_endereco: "Rua, complemento, bairro",  
                   desc_flora: "tem flores silvestres",
                   desc_fauna: "não tem cachorro do mato",
@@ -35,7 +35,7 @@ localRoutes.get("/", auth, LocalController.listar);
 localRoutes.put(
   "/:local_id",
   auth,
-  validarDescricao(descricaoSchema),
+  validarDescription(actionSchema),
   /*
              #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {

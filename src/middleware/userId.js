@@ -10,8 +10,8 @@ async function userId(req, res, next) {
 
   try {
     const decodedToken = verify(token, process.env.SECRET_JWT);
-    req.usuarioId = decodedToken.sub;
-    //console.log(req.usuarioId)
+    req.userId = decodedToken.sub;
+    //console.log(req.userId)
     next();
   } catch (error) {
     console.error("Erro ao verificar o token JWT:", error);

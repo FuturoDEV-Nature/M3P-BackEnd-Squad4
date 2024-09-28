@@ -1,12 +1,12 @@
 const yup = require("yup");
 
-const usuarioSchema = yup.object().shape({
-  nome: yup.string().required(),
+const userSchema = yup.object().shape({
+  name: yup.string().required(),
   cpf: yup.string().length(11).required(),
   email: yup.string().email().required(),
   sexo: yup.string().nullable(),
-  senha: yup.string().required(),
+  password: yup.string().required(),
   data_nascimento: yup.date().notRequired(),
 });
 
-module.exports = usuarioSchema;
+module.exports = userSchema;

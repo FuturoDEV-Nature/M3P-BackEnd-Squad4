@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
-const Descricao = require("../models/Descricao");
+const Action = require("../models/Action");
 const Local = require("../models/Local");
 const { userId } = require("../middleware/userId");
 
@@ -8,10 +8,10 @@ class LocalController {
   async listar(req, res) {
     // Chamada do middleware para verificar o token JWT
     userId(req, res, async () => {
-      const usuarioId = req.usuarioId;
+      const userId = req.userId;
 
       try {
-        const local = await Local.findAll({ where: { usuarioId } });
+        const local = await Local.findAll({ where: { userId } });
         res.json(local);
       } catch (error) {
         res.status(500).json({ error: "Erro ao localizar Local da Natureza." });
@@ -22,7 +22,7 @@ class LocalController {
   // Método para cadastrar um Local da Natureza [ ok ]
   async cadastrar(req, res) {
     userId(req, req, async () => {
-      const usuarioId = req.usuarioId;
+      const userId = req.userId;
       const { nome, local_endereco, desc_flora, desc_fauna } = req.body;
 
       try {
@@ -30,18 +30,18 @@ class LocalController {
         const novoLocal = await Local.create({
           nome: nome,
           local_endereco: local_endereco,
-          usuarioId: usuarioId,
+          userId: userId,
         });
 
-        const novaDescricao = await Descricao.create({
+        const novaAction = await Action.create({
           local_id: novoLocal.id,
           desc_fauna,
           desc_flora,
           data_visita: new Date(),
-          usuarioId: usuarioId,
+          userId: userId,
         });
 
-        res.status(201).json({ local: novoLocal, descricao: novaDescricao });
+        res.status(201).json({ local: novoLocal, action: novaAction });
       } catch (error) {
         console.error("Erro ao cadastrar o local:", error);
         res.status(500).json({ error: "Erro ao cadastrar o local." });
@@ -53,14 +53,14 @@ class LocalController {
   async mapear(req, res) {
     // Chamada do middleware para verificar o token JWT
     userId(req, res, async () => {
-      const usuarioId = req.usuarioId;
+      const userId = req.userId;
       const local_id = req.params.local_id;
       //console.log(local_id);
-      //console.log(usuarioId);
+      //console.log(userId);
 
       try {
         const local = await Local.findOne({
-          where: { id: local_id, usuarioId: usuarioId },
+          where: { id: local_id, userId: userId },
         });
         //console.log(local.local_endereco) testando o endereço do local
         const response = await axios.get(
@@ -89,7 +89,7 @@ class LocalController {
   //Método para atualizar um local da Natureza na tabela de Locais da Natureza [ ok ]
   async atualizar(req, res) {
     userId(req, res, async () => {
-      const usuarioId = req.usuarioId;
+      const userId = req.userId;
       const { local_id } = req.params;
       const { nome, local_endereco, desc_fauna, desc_flora, data_visita } =
         req.body;
@@ -100,7 +100,7 @@ class LocalController {
           {
             nome: nome,
             local_endereco: local_endereco,
-            usuarioId: usuarioId,
+            userId: userId,
           },
           {
             where: {
@@ -109,13 +109,13 @@ class LocalController {
           }
         );
 
-        // Atualiza a descrição
-        const descricaoAtualizada = await Descricao.update(
+        // Atualiza as Ações
+        const actionAtualizada = await Action.update(
           {
             desc_fauna,
             desc_flora,
             data_visita,
-            usuarioId,
+            userId,
             local_id,
           },
           {
@@ -125,7 +125,7 @@ class LocalController {
           }
         );
 
-        res.status(200).json({ descricaoAtualizada, localAtualizado });
+        res.status(200).json({ actionAtualizada, localAtualizado });
       } catch (error) {
         console.error("Erro ao atualizar a descrição do local:", error);
         res
@@ -138,12 +138,12 @@ class LocalController {
   // Método para Apagar um local da Natureza [ok]
   async deletar(req, res) {
     userId(req, res, async () => {
-      const usuarioId = req.usuarioId;
+      const userId = req.userId;
       const { local_id } = req.params;
 
       try {
         const localExistente = await Local.findOne({
-          where: { id: local_id, usuarioId: usuarioId },
+          where: { id: local_id, userId: userId },
         });
 
         if (!localExistente) {

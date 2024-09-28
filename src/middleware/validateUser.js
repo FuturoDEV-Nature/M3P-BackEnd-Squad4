@@ -1,6 +1,6 @@
-const Usuario = require("../models/Usuario");
+const User = require("../models/User");
 
-const validarUsuario = (schema) => async (req, res, next) => {
+const validarUser = (schema) => async (req, res, next) => {
   if (!req.body.nome || !req.body.email) {
     return res.status(400).json({ error: "O nome e email são obrigatórios" });
   }
@@ -37,8 +37,8 @@ const validarUsuario = (schema) => async (req, res, next) => {
       });
   }
 
-  if (!req.body.senha) {
-    return res.status(400).json({ error: "Insira uma senha." });
+  if (!req.body.password) {
+    return res.status(400).json({ error: "Insira uma password." });
   }
 
   if (!req.body.cpf || req.body.cpf.length !== 11) {
@@ -57,14 +57,14 @@ const validarUsuario = (schema) => async (req, res, next) => {
   }
 
   try {
-    // Verificar se o CPF já existe na tabela Usuarios
-    const usuario = await Usuario.findOne({ where: { cpf: req.body.cpf } });
+    // Verificar se o CPF já existe na tabela Users
+    const user = await User.findOne({ where: { cpf: req.body.cpf } });
 
-    if (usuario) {
+    if (user) {
       return res.status(409).json({ error: "CPF já cadastrado." });
     }
   } catch (error) {
-    console.error("Erro ao buscar CPF na tabela Usuarios:", error);
+    console.error("Erro ao buscar CPF na tabela Users:", error);
     return res
       .status(500)
       .json({ error: "Não foi possível cadastrar seu CPF." });
@@ -81,9 +81,9 @@ const validarUsuario = (schema) => async (req, res, next) => {
   }
 
   try {
-    const usuario = await Usuario.findOne({ where: { email: req.body.email } });
+    const user = await User.findOne({ where: { email: req.body.email } });
 
-    if (usuario) {
+    if (user) {
       return res.status(409).json({ error: "Email já cadastrado." });
     }
   } catch (error) {
@@ -102,4 +102,4 @@ const validarUsuario = (schema) => async (req, res, next) => {
   }
 };
 
-module.exports = validarUsuario;
+module.exports = validarUser;

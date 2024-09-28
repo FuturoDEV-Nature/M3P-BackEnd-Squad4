@@ -33,12 +33,12 @@
                   "type": "string",
                   "example": "teste123@gmail.com"
                 },
-                "senha": {
+                "password": {
                   "type": "string",
                   "example": "teste123"
                 }
               },
-              "required": ["email", "senha"]
+              "required": ["email", "password"]
             }
           }
         ],
@@ -58,7 +58,7 @@
         }
       }
     },
-    "/usuario/": {
+    "/user/": {
       "post": {
         "tags": ["Usuário"],
         "description": "",
@@ -86,7 +86,7 @@
                   "type": "string",
                   "example": "teste@gmail.com"
                 },
-                "senha": {
+                "password": {
                   "type": "string",
                   "example": "123"
                 },
@@ -95,7 +95,7 @@
                   "example": "1996-12-15"
                 }
               },
-              "required": ["nome", "cpf", "email", "senha"]
+              "required": ["nome", "cpf", "email", "password"]
             }
           }
         ],
@@ -115,13 +115,13 @@
         }
       }
     },
-    "/usuario/{usuarioId}": {
+    "/user/{userId}": {
       "put": {
         "tags": [],
         "description": "",
         "parameters": [
           {
-            "name": "usuarioId",
+            "name": "userId",
             "in": "body",
             "required": true,
             "schema": {
@@ -143,7 +143,7 @@
                   "type": "string",
                   "example": "teste@gmail.com"
                 },
-                "senha": {
+                "password": {
                   "type": "string",
                   "example": "123"
                 },
@@ -152,7 +152,7 @@
                   "example": "1996-12-15"
                 }
               },
-              "required": ["nome", "cpf", "email", "senha"]
+              "required": ["nome", "cpf", "email", "password"]
             }
           }
         ],
