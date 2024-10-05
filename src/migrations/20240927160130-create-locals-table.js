@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
 	await queryInterface.createTable(
-		'local',
+		'locals',
 		{
 		  id: {
 			allowNull: false,
@@ -24,7 +24,7 @@ module.exports = {
 		  userId: {
 			type: Sequelize.INTEGER,
 			references: {
-				model: 'user',
+				model: 'users',
 				key: "id"
 			}
 		  },
@@ -46,6 +46,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("local");
+    await queryInterface.dropTable("locals");
   },
 };

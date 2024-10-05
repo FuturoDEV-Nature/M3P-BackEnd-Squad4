@@ -2,12 +2,9 @@ const { DataTypes } = require("sequelize");
 const { connection } = require("../database/connection");
 const User = require("./User");
 
-const Local = connection.define("local", {
+const Local = connection.define("locals", {
 	name: {
 		type: DataTypes.STRING,
-	},
-	description: {
-		type: DataTypes.STRING
 	},
 	// LOCALIDADE (?) [CEP, complemento...]
 	localidade: {

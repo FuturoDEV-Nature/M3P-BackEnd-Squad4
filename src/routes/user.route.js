@@ -32,7 +32,6 @@ router.post(
   userController.createNewUser
 );
 
-// Necessários ajustes na função validarUser do middleware (cpf)
 router.put(
   "/:userId", hasPermission(["editar_usuario"]),
   /*

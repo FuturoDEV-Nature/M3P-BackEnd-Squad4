@@ -16,7 +16,7 @@ function hasPermission(permissions){
             return response.status(401).send({ message: "Token não fornecido" });
         }
 
-        // faz a desestruturação do token e verifica se o token é válido
+//BUG!!!        // faz a desestruturação do token e verifica se o token é válido 
         const decoded = jwt.verify(token, process.env.SECRET_JWT)
         request.payload = decoded; 
 

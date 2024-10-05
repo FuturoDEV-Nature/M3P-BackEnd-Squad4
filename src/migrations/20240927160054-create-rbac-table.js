@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("role", {
+    await queryInterface.createTable("roles", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.createTable("permission", {
+    await queryInterface.createTable("permissions", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -41,7 +41,7 @@ module.exports = {
         type: Sequelize.DATE,
       }
     });
-    await queryInterface.createTable("userRole", {
+    await queryInterface.createTable("userRoles", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -51,14 +51,14 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'user',
+          model: 'users',
           key: "id",
         },
       },
       roleId: {
         type: Sequelize.INTEGER,
 		references: {
-			model: 'role',
+			model: 'roles',
 			key: "id"
 		}
       },
@@ -71,7 +71,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.createTable("permissionRole", {
+    await queryInterface.createTable("permissionRoles", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -81,14 +81,14 @@ module.exports = {
       permissionId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'permission',
+          model: 'permissions',
           key: "id",
         },
       },
       roleId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'role',
+          model: 'roles',
           key: "id",
         },
       },
@@ -104,9 +104,9 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-	  await queryInterface.dropTable("permissionRole");
-	  await queryInterface.dropTable("userRole");
-	  await queryInterface.dropTable("permission");
-	  await queryInterface.dropTable("role");
+	  await queryInterface.dropTable("permissionRoles");
+	  await queryInterface.dropTable("userRoles");
+	  await queryInterface.dropTable("permissions");
+	  await queryInterface.dropTable("roles");
   },
 };

@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 const User = require("./User");
 const Local = require("./Local");
 
-const Action = connection.define("action", {
+const Action = connection.define("descriptions", {
   userId: {
     type: DataTypes.INTEGER,
     references: {

@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
-const Action = require("../models/Action");
+const Description = require("../models/Description");
 const Local = require("../models/Local");
 const { userId } = require("../middleware/userId");
 
@@ -33,7 +33,7 @@ class LocalController {
           userId: userId,
         });
 
-        const novaAction = await Action.create({
+        const novaDescription = await Description.create({
           local_id: novoLocal.id,
           desc_fauna,
           desc_flora,
@@ -41,7 +41,7 @@ class LocalController {
           userId: userId,
         });
 
-        res.status(201).json({ local: novoLocal, action: novaAction });
+        res.status(201).json({ local: novoLocal, description: novaDescription });
       } catch (error) {
         console.error("Erro ao cadastrar o local:", error);
         res.status(500).json({ error: "Erro ao cadastrar o local." });
@@ -109,8 +109,8 @@ class LocalController {
           }
         );
 
-        // Atualiza as Ações
-        const actionAtualizada = await Action.update(
+        // Atualiza as Descrições
+        const descriptionAtualizada = await Description.update(
           {
             desc_fauna,
             desc_flora,
@@ -125,7 +125,7 @@ class LocalController {
           }
         );
 
-        res.status(200).json({ actionAtualizada, localAtualizado });
+        res.status(200).json({ descriptionAtualizada, localAtualizado });
       } catch (error) {
         console.error("Erro ao atualizar a descrição do local:", error);
         res

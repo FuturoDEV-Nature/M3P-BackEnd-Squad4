@@ -3,7 +3,7 @@ const {DataTypes} = require("sequelize")
 const User = require("./User")
 const Role = require("./Role")
 
-const UserRole = connection.define("usersRole", {
+const UserRole = connection.define("usersRoles", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

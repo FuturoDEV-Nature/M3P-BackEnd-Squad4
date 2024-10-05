@@ -1,46 +1,49 @@
-const { compare } = require("bcryptjs");
+const { compare } = require("bcrypt"); // Certifique-se de que bcrypt está instalado
 const { sign } = require("jsonwebtoken");
 const User = require("../models/User");
 
 class LoginController {
   async login(req, res) {
     try {
-      const email = req.body.email;
-      const password = req.body.password;
+      const { email, password } = req.body;
 
       if (!email) {
         return res.status(400).json({ error: "O email é obrigatório" });
       }
 
       if (!password) {
-        return res.status(400).json({ error: "O password é obrigatório" });
+        return res.status(400).json({ error: "A senha é obrigatória" });
       }
 
       const user = await User.findOne({ where: { email } });
 
       if (!user) {
         return res.status(404).json({
-          error: "Nenhum usuário corresponde a email e password fornecido.",
+          error: "Nenhum usuário corresponde ao email fornecido.",
         });
-      }
-      /*
-      const hashSenha = await compare(password, user.password);
+      	console.error(error)
+	}
 
-       if (hashSenha === false) {
-         return res.status(400).json({ mensagem: "Conta não encontrada." });
+
+      // Comparar a senha fornecida com a senha armazenada
+      const passwordMatch = await compare(password, user.password);
+
+      if (!passwordMatch) {
+        return res.status(400).json({ error: "Email ou senha incorretos." });
       }
-*/
+
       const payload = {
         sub: user.id,
         email: user.email,
-        nome: user.nome,
+        name: user.name,
       };
 
-      const token = sign(payload, process.env.SECRET_JWT);
+      const token = sign(payload, process.env.SECRET_JWT, { expiresIn: '1h' });
 
       res.status(200).json({ Token: token });
     } catch (error) {
-      return res.status(500).json({ error: error, errorm: "Algo deu errado!" });
+      console.error(error); // Adicionei um log para ver erros no console
+      return res.status(500).json({ error: "Algo deu errado!" });
     }
   }
 }

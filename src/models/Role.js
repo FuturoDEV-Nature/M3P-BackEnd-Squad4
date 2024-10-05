@@ -3,7 +3,7 @@ const { connection } = require("../database/connection");
 const User = require("./User")
 const UserRole = require("./UserRole")
 
-const Role = connection.define("role", {
+const Role = connection.define("roles", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
