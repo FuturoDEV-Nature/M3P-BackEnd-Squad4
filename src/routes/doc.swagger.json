@@ -193,7 +193,7 @@
                   "type": "string",
                   "example": "Nome do local"
                 },
-                "local_endereco": {
+                "localidade": {
                   "type": "string",
                   "example": "Rua, complemento, bairro"
                 },
@@ -206,7 +206,7 @@
                   "example": "não tem cachorro do mato"
                 }
               },
-              "required": ["nome", "local_endereco"]
+              "required": ["nome", "localidade"]
             }
           }
         ],
@@ -274,7 +274,7 @@
                   "type": "string",
                   "example": "Nome do local"
                 },
-                "local_endereco": {
+                "localidade": {
                   "type": "string",
                   "example": "Rua, complemento, bairro"
                 },
@@ -291,7 +291,7 @@
                   "example": "não tem cachorro do mato"
                 }
               },
-              "required": ["nome", "local_endereco", "data_visita"]
+              "required": ["nome", "localidade", "data_visita"]
             }
           }
         ],
