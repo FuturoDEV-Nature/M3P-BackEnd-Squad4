@@ -32,24 +32,6 @@ class UserController {
             if (!email || !password || !sexo || !cpf || !data_nascimento || !endereco) {
                 return response.status(400).send({ message: "Todos os campos são obrigatórios" });
             }
-
-            // Validação de CPF ter 11 dígitos
-            if (cpf.length !== 11) {
-                return response.status(400).send({ message: "CPF deve ter 11 dígitos" });
-            }
-
-            // Validação de email único
-            const existingUserEmail = await User.findOne({ where: { email } });
-            if (existingUserEmail) {
-                return response.status(400).send({ message: "Email já cadastrado" });
-            }
-
-            // Validação de CPF único
-            const existingUserCpf = await User.findOne({ where: { cpf } });
-            if (existingUserCpf) {
-                return response.status(400).send({ message: "CPF já cadastrado" });
-            }
-
             // Transformar sexo em lowercase
             const sexoLower = sexo.toLowerCase();
 

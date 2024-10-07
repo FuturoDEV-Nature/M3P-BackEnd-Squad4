@@ -21,7 +21,6 @@ class LoginController {
         return res.status(404).json({
           error: "Nenhum usuário corresponde ao email fornecido.",
         });
-      	console.error(error)
 	}
 
 
@@ -38,7 +37,7 @@ class LoginController {
         name: user.name,
       };
 
-      const token = sign(payload, process.env.SECRET_JWT, { expiresIn: '1h' });
+      const token = sign(payload, process.env.SECRET_JWT, { expiresIn: '12h' });	// Token válido por 12 horas
 
       res.status(200).json({ Token: token });
     } catch (error) {

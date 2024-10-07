@@ -1,7 +1,7 @@
 const User = require("../models/User");
 
 const validarUser = (schema) => async (req, res, next) => {
-  if (!req.body.nome || !req.body.email) {
+  if (!req.body.name || !req.body.email) {
     return res.status(400).json({ error: "O nome e email são obrigatórios" });
   }
 
@@ -44,18 +44,22 @@ const validarUser = (schema) => async (req, res, next) => {
   if (!req.body.cpf || req.body.cpf.length !== 11) {
     return res
       .status(400)
-      .json({ error: "O CPF precisa ser um número com 11 dígitos (string)." });
+      .json({ error: "O CPF precisa ser um número com 11 dígitos		." });
   }
-
   if (!req.body.sexo) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "No item sexo escolha entra as opções: feminino, masculino ou outros.",
-      });
+	return res
+	  .status(400)
+	  .json({
+		error:
+		  "No item sexo escolha entre as opções: feminino, masculino ou outros.",
+	  });
   }
-
+  
+  const sexoLower = req.body.sexo.toLowerCase();
+  if (!["feminino", "masculino", "outros"].includes(sexoLower)) {
+	return res.status(400).json({ error: "Escolha entre os sexos: feminino, masculino ou outros" });
+  }
+  
   try {
     // Verificar se o CPF já existe na tabela Users
     const user = await User.findOne({ where: { cpf: req.body.cpf } });

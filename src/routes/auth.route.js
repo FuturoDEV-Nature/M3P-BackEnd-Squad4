@@ -21,8 +21,10 @@ router.post('/', async (req, res) => {
       include: [{ model: Role, as: 'roles', through: { attributes: [] }, 
         include:[{ model: Permission, as: 'permissions', through: { attributes: [] } }]
       }],
-    })
-
+    });
+	// console.log("Usuário ::::::");
+	// console.log(JSON.stringify(usuario, null, 2)); // Formatação para visualização clara
+	
     if (!usuario) {
       return res.status(404).send('Usuário não encontrado');
     }
@@ -33,8 +35,13 @@ router.post('/', async (req, res) => {
       return res.status(401).send('Senha incorreta');
     }
 
-    const payload = { id: usuario.id, email: usuario.email, roles: usuario.roles };
-    const token = jwt.sign(payload, process.env.SECRET_JWT, { expiresIn: '1h' });
+    const payload = { 
+		id: usuario.id,
+		email: usuario.email,
+		roles: usuario.roles
+	};
+
+    const token = jwt.sign(payload, process.env.SECRET_JWT, { expiresIn: '12h' });	// token válido por 12 horas
     res.status(200).json({token});
 
   } catch (err) {
