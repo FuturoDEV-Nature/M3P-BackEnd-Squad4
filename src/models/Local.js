@@ -3,11 +3,11 @@ const { connection } = require("../database/connection");
 const User = require("./User");
 
 const Local = connection.define("locals", {
-	name: {
-		type: DataTypes.STRING,
-	},
-	// LOCALIDADE (?) [CEP, complemento...]
-	localidade: {
+  name: {
+    type: DataTypes.STRING,
+  },
+  // LOCALIDADE (Endereço) [CEP, complemento...]
+  localidade: {
     type: DataTypes.STRING,
   },
   userId: {
@@ -20,11 +20,11 @@ const Local = connection.define("locals", {
     },
   },
   lat: {
-	type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   lon: {
-	type: DataTypes.STRING
-  }  
+    type: DataTypes.STRING,
+  },
 });
 User.hasMany(Local, {
   foreignKey: "userId",

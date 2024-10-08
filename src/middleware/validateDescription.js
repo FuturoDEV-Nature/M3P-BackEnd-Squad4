@@ -1,12 +1,12 @@
 const validarDescription = (schema) => async (req, res, next) => {
-  if (!req.body.nome) {
+  if (!req.body.name) {
     return res
       .status(400)
       .json({ error: "Digite o nome do local da natureza." });
   }
 
-  if (!req.body.local_endereco) {
-    return res.status(400).json({ error: "Informe uma localização." });
+  if (!req.body.localidade) {
+    return res.status(400).json({ error: "Informe uma localização, o endereço e a cidade " });
   }
 
   function validarData(data) {
@@ -33,11 +33,11 @@ const validarDescription = (schema) => async (req, res, next) => {
     return false;
   }
 
-  if (!validarData(req.body.data_nascimento)) {
+  if (!validarData(req.body.data_visita)) {
     return res
       .status(400)
       .json({
-        error: "Por favor, digite a data de nascimento no formato YYYY-MM-DD",
+        error: "Por favor, digite a data de visitação no formato YYYY-MM-DD",
       });
   }
 

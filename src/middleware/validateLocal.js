@@ -5,8 +5,8 @@ const validarLocal = (schema) => async (req, res, next) => {
       .json({ error: "Digite o nome do local da natureza." });
   }
 
-  if (!req.body.local_endereco) {
-    return res.status(400).json({ error: "Informe uma localização." });
+  if (!req.body.localidade) {
+    return res.status(400).json({ error: "Informe a localização. ex: Praia Mole - Florianópolis" });
   }
 
   try {
