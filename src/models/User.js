@@ -31,7 +31,7 @@ const User = connection.define('users', {
 	endereco:{
 		type: DataTypes.STRING
 	},
-    createdAt: DataTypes.DATE,
+    createdAt: DataTypes.DATE,								
     updatedAt: DataTypes.DATE
 })
 

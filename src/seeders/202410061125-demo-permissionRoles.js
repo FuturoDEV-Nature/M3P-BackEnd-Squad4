@@ -106,7 +106,15 @@ module.exports = {
 				roleId: "1",		// admin
                 createdAt: new Date(),
                 updatedAt: new Date(),
+            },
+            {
+                id: 16,
+				permissionId: "15",	// deletar_usuario
+				roleId: "1",		// admin
+                createdAt: new Date(),
+                updatedAt: new Date(),
             }
+
         ]);
     },
 

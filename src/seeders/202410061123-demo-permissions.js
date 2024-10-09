@@ -86,6 +86,12 @@ module.exports = {
 				description: "adicionar_papel_usuario", // criar um papel (roles) para um usuário
                 createdAt: new Date(),
                 updatedAt: new Date(),
+            },
+            {
+                id: 15,
+				description: "deletar_usuario", // nova tnetativa de incluir o metodo deletar
+                createdAt: new Date(),
+                updatedAt: new Date(),
             }
         ]);
     },
