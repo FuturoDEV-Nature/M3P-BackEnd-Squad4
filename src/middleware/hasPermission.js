@@ -14,26 +14,39 @@ function hasPermission(permissions) {
         if (!token) {
             return res.status(401).send({ message: "Token não fornecido" });
         }
-		// Faz a desestruturação do token e verifica se o token é válido 
-		const decoded = jwt.verify(token, process.env.SECRET_JWT);
-		req.payload = decoded;
-		//console.log(decoded)
 
-		try {
+        // Faz a desestruturação do token e verifica se o token é válido 
+        const decoded = jwt.verify(token, process.env.SECRET_JWT);
+        req.payload = decoded;
+        console.log(":::PAYLOAD:::");
+        console.log(decoded);
+
+        try {
             const roles = await PermissionRole.findAll({
                 where: {
-                    roleId: req.payload.roles.map((role)=>role.id)	// BUG!!!
+                    roleId: req.payload.roles.map((role) => role.id)
                 },
                 attributes: ['permissionId'],
                 include: [{ model: Permission, as: 'permissions' }]
             });
-			console.log(roles)
-            const existPermission = roles.some((item) => {
-                const hasPermission = item.permissions.some((p) => {
+
+            //console.log(":::ROLES :::");
+            //console.log(roles);
+
+            // Mapeando os permissionIds e verificando se existe permissão
+            const permissionIds = roles.map(role => role.dataValues.permissionId);
+			console.log(permissionIds)
+
+            const existPermission = roles.some((role) => {
+                return role.permissions.some((p) => {
+					
+					console.log(":::PERMISSÕES:::",p.description)
                     return permissions.includes(p.description);
                 });
-                return hasPermission;
             });
+
+            console.log(":::EXISTE A PERMISSÃO:::");
+            console.log(existPermission);
 
             if (!existPermission) {
                 return res.status(403).send({ message: "Você não tem autorização para este recurso." });

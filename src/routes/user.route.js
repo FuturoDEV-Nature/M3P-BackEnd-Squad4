@@ -57,6 +57,6 @@ router.put(
 router.get("/", swaggerUi.setup(swaggerDocument));
 
 //Rota para deletar conta ...
-router.delete("/id", hasPermission(["remover_usuario"]), userController.deleteUser);
+router.delete("/:id", hasPermission(["deletar_usuario"]), userController.deleteUser);
 
 module.exports = router;

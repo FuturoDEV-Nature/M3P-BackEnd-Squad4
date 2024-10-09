@@ -101,20 +101,20 @@
 		});
 	}
 
-	//Método para atualizar um local da Natureza na tabela de Descrições [ok]
-	//Método para atualizar um local da Natureza na tabela de Locais da Natureza [ ok ]
+	//Método para atualizar um local da Natureza na tabela de Descrições [ ]
+	//Método para atualizar um local da Natureza na tabela de Locais da Natureza [ ]
 	async atualizar(req, res) {
 		userId(req, res, async () => {
 		const userId = req.userId;
 		const { local_id } = req.params;
-		const { nome, localidade, desc_fauna, desc_flora, data_visita } =
+		const { name, localidade, desc_fauna, desc_flora, data_visita } =
 			req.body;
 
 		try {
-			// Atualiza o local
+			// Atualiza o nome e o endereço na tabela de Locais da Natureza
 			const localAtualizado = await Local.update(
 			{
-				nome: nome,
+				name: name,
 				localidade: localidade,
 				userId: userId,
 			},
@@ -151,7 +151,7 @@
 		});
 	}
 
-	// Método para Apagar um local da Natureza [ok]
+	// Método para Apagar um local da Natureza [ ]
 	async deletar(req, res) {
 		userId(req, res, async () => {
 		const userId = req.userId;

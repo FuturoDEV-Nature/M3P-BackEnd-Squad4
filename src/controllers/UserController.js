@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require('bcrypt');
+const UserRole = require("../models/UserRole");
 
 class UserController {
     // Método achar todos os usuários
@@ -80,24 +81,38 @@ class UserController {
         }
     }
 
-    // Método deletar usuário
-    async deleteUser(request, response) {
-        try {
-            const { id } = request.params;
-
-            const user = await User.findByPk(id);
-            if (!user) {
-                return response.status(404).send({ message: "Usuário não encontrado" });
-            }
-
-            await user.destroy();
-
-            return response.status(204).send();
-        } catch (error) {
-            console.log(error.message);
-            return response.status(400).send({ message: "O usuário não pôde ser deletado!" });
-        }
-    }
+		// Método deletar usuário
+		async deleteUser(request, response) {
+			try {
+				const { id } = request.params;
+	
+				// Buscar o userId na tabela userRoles
+				const userRoles = await UserRole.findAll({
+					where: { userId: id }
+				});
+	
+				if (userRoles.length > 0) {
+					// Deletar as entradas relacionadas na tabela userRoles
+					await UserRole.destroy({
+						where: { userId: id }
+					});
+				}
+	
+				// Verificar se o usuário existe na tabela users
+				const user = await User.findByPk(id);
+				if (!user) {
+					return response.status(404).send({ message: "Usuário não encontrado" });
+				}
+	
+				// Deletar o usuário da tabela users
+				await user.destroy();
+	
+				return response.status(204).send();
+			} catch (error) {
+				console.log(error.message);
+				return response.status(400).send({ message: "O usuário não pôde ser deletado!" });
+			}
+		}
 }
 
 module.exports = new UserController();
