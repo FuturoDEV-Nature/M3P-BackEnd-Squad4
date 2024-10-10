@@ -1,4 +1,4 @@
-const { config } = require('dotenv')
+const { config } = require('dotenv')						
 config()
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 		rejectUnauthorized: false,
 		require: true
 	}
-  },
+  },	
   pool: {
 	max: 5,
 	min: 0,
