@@ -6,9 +6,9 @@
   "scripts": {
 	"start":"node index.js",
 	"db:migrate": "npx sequelize-cli db:migrate",
-	"db:migrate:undo": "npx seuqlize-cli db:migrate:undo:all",
-	"db:seed":"npx sequlize-cli db:seed:all",
-	"db:seed:undo":"npx sequlize-cli db:seed:undo:all",
+	"db:migrate:undo": "npx sequelize-cli db:migrate:undo:all",
+	"db:seed":"npx sequelize-cli db:seed:all",
+	"db:seed:undo":"npx sequelize-cli db:seed:undo:all",
 	"start:with-migrations":"npm run db:migrate && npm run db:seed && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon src/index.js",
