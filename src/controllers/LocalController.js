@@ -23,7 +23,7 @@
 	async cadastrar(req, res) {
 		userId(req, res, async () => {
 		  const userId = req.userId;
-		  const { name, localidade, desc_flora, desc_fauna } = req.body;
+		  const { nome, localidade, descricao } = req.body;
 	
 		  try {
 			// Fazer requisição à API para obter latitude e longitude
@@ -39,8 +39,8 @@
 	
 			  // Cria o novo local com latitude e longitude
 			  const novoLocal = await Local.create({
-				name: name,
-				localidade: localidade,
+				nome,
+				localidade,
 				userId: userId,
 				lat: lat,  // Adiciona a latitude
 				lon: lon   // Adiciona a longitude
@@ -48,8 +48,7 @@
 	
 			  const novaDescription = await Description.create({
 				local_id: novoLocal.id,
-				desc_fauna,
-				desc_flora,
+				descricao,
 				data_visita: new Date(),
 				userId: userId,
 			  });
@@ -107,14 +106,14 @@
 		userId(req, res, async () => {
 		const userId = req.userId;
 		const { local_id } = req.params;
-		const { name, localidade, desc_fauna, desc_flora, data_visita } =
+		const { nome, localidade, descricao, data_visita } =
 			req.body;
 
 		try {
 			// Atualiza o nome e o endereço na tabela de Locais da Natureza
 			const localAtualizado = await Local.update(
 			{
-				name: name,
+				nome,
 				localidade: localidade,
 				userId: userId,
 			},
@@ -128,8 +127,7 @@
 			// Atualiza as Descrições
 			const descriptionAtualizada = await Description.update(
 			{
-				desc_fauna,
-				desc_flora,
+				descricao,
 				data_visita,
 				userId,
 				local_id,
