@@ -3,7 +3,7 @@ const cors = require("cors");
 const { connection } = require("./database/connection");
 const routes = require("./routes/routes");
 
-const PORT = process.env.PORT || 3000; // Defina a porta, usando PORT da RENDER ou 3000 localmente
+const PORT_API = process.env.PORT_API || 3000; // Defina a porta, usando PORT da RENDER ou 3000 localmente
 
 class Server {
   constructor(
@@ -31,8 +31,8 @@ class Server {
   }
 
   async initializeServer(app) {
-    app.listen(PORT, () => // Altere aqui para usar a variável PORT
-      console.log(`Servidor executando na porta ${PORT}`)
+    app.listen(PORT_API, () => // Altere aqui para usar a variável PORT
+      console.log(`Servidor executando na porta https://localhost:${PORT_API}`)
     );
   }
 }
