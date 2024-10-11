@@ -3,7 +3,7 @@ const { connection } = require("../database/connection");
 const User = require("./User");
 
 const Local = connection.define("locals", {
-  name: {
+  nome: {
     type: DataTypes.STRING,
   },
   // LOCALIDADE (Endereço) [CEP, complemento...]
