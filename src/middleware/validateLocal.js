@@ -1,5 +1,5 @@
 const validarLocal = (schema) => async (req, res, next) => {
-  if (!req.body.name) {
+  if (!req.body.nome) {
     return res
       .status(400)
       .json({ error: "Digite o nome do local da natureza." });
