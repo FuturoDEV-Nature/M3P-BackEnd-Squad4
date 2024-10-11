@@ -12,7 +12,7 @@ loginRoutes.post(
                 description: 'Tela de login',
                 schema: {
                   $email: "teste123@gmail.com",
-                  $password: "teste123"
+                  $senha: "teste123"
             }
         }
     */

@@ -29,19 +29,19 @@ class UserController {
     // Método criar um novo usuário
     async createNewUser(request, response) {
         try {
-            const { email, name, password, sexo, cpf, data_nascimento, endereco } = request.body;
-            if (!email || !password || !sexo || !cpf || !data_nascimento || !endereco) {
+            const { email, name, senha, sexo, cpf, data_nascimento, endereco } = request.body;
+            if (!email || !senha || !sexo || !cpf || !data_nascimento || !endereco) {
                 return response.status(400).send({ message: "Todos os campos são obrigatórios" });
             }
             // Transformar sexo em lowercase
             const sexoLower = sexo.toLowerCase();
 
-            const passwordEncriptada = await bcrypt.hash(password, 10);
+            const senhaEncriptada = await bcrypt.hash(senha, 10);
 
             const data = await User.create({
                 email,
                 name,
-                password: passwordEncriptada,
+                senha: senhaEncriptada,
                 sexo: sexoLower,
                 cpf,
                 data_nascimento,
@@ -59,7 +59,7 @@ class UserController {
     async updateUser(request, response) {
         try {
             const { id } = request.params;
-            const { email, name, password, data_nascimento, endereco } = request.body;
+            const { email, name, senha, data_nascimento, endereco } = request.body;
 
             const user = await User.findByPk(id);
             if (!user) {
@@ -69,7 +69,7 @@ class UserController {
             const data = await user.update({
                 email,
                 name,
-                password,
+                senha,
                 data_nascimento,
                 endereco
             });

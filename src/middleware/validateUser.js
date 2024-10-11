@@ -37,8 +37,8 @@ const validarUser = (schema) => async (req, res, next) => {
       });
   }
 
-  if (!req.body.password) {
-    return res.status(400).json({ error: "Insira uma password." });
+  if (!req.body.senha) {
+    return res.status(400).json({ error: "Insira uma senha." });
   }
 
   if (!req.body.cpf || req.body.cpf.length !== 11) {

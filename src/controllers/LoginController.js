@@ -5,13 +5,13 @@ const User = require("../models/User");
 class LoginController {
   async login(req, res) {
     try {
-      const { email, password } = req.body;
+      const { email, senha } = req.body;
 
       if (!email) {
         return res.status(400).json({ error: "O email é obrigatório" });
       }
 
-      if (!password) {
+      if (!senha) {
         return res.status(400).json({ error: "A senha é obrigatória" });
       }
 
@@ -25,9 +25,9 @@ class LoginController {
 
 
       // Comparar a senha fornecida com a senha armazenada
-      const passwordMatch = await compare(password, user.password);
+      const senhaMatch = await compare(senha, user.senha);
 
-      if (!passwordMatch) {
+      if (!senhaMatch) {
         return res.status(400).json({ error: "Email ou senha incorretos." });
       }
 

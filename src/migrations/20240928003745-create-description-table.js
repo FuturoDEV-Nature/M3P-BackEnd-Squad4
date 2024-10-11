@@ -27,11 +27,7 @@ module.exports = {
       data_visita: {
         type: Sequelize.DATE,
       },
-      desc_fauna: {
-        type: Sequelize.STRING,
-      },
-
-      desc_flora: {
+      descricao: {
         type: Sequelize.STRING,
       },
 	  createdAt: {

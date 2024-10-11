@@ -26,7 +26,7 @@ module.exports = {
 			type: Sequelize.STRING,
 			unique: true			// Validação no BD para email único
 		  },
-		  password: {
+		  senha: {
 			type: Sequelize.STRING,
 			allowNull: false
 		  },
@@ -45,6 +45,11 @@ module.exports = {
 		  endereco: {
 			allowNull: false,
 			type: Sequelize.STRING
+		  },
+		  isLogged:{
+			allowNull: false,
+			type: Sequelize.BOOLEAN,
+			defaultValue: "false"
 		  },
 		  createdAt: {
 			allowNull: false,

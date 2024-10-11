@@ -18,7 +18,7 @@ const User = connection.define('users', {
         type: DataTypes.STRING,
         unique: true
     },
-    password: {
+    senha: {
         type: DataTypes.STRING,
     },
 	cpf: {
@@ -30,6 +30,9 @@ const User = connection.define('users', {
 	},
 	endereco:{
 		type: DataTypes.STRING
+	},
+	isLogged:{
+		type: DataTypes.BOOLEAN
 	},
     createdAt: DataTypes.DATE,								
     updatedAt: DataTypes.DATE
