@@ -18,8 +18,8 @@ function hasPermission(permissions) {
         // Faz a desestruturação do token e verifica se o token é válido 
         const decoded = jwt.verify(token, process.env.SECRET_JWT);
         req.payload = decoded;
-        console.log(":::PAYLOAD:::");
-        console.log(decoded);
+     //   console.log(":::PAYLOAD:::");
+     //   console.log(decoded);
 
         try {
             const roles = await PermissionRole.findAll({
@@ -34,19 +34,19 @@ function hasPermission(permissions) {
             //console.log(roles);
 
             // Mapeando os permissionIds e verificando se existe permissão
-            const permissionIds = roles.map(role => role.dataValues.permissionId);
-			console.log(permissionIds)
+          //  const permissionIds = roles.map(role => role.dataValues.permissionId);
+			//console.log(permissionIds)
 
             const existPermission = roles.some((role) => {
                 return role.permissions.some((p) => {
 					
-					console.log(":::PERMISSÕES:::",p.description)
+				//	console.log(":::PERMISSÕES:::",p.description)
                     return permissions.includes(p.description);
                 });
             });
 
-            console.log(":::EXISTE A PERMISSÃO:::");
-            console.log(existPermission);
+         //   console.log(":::EXISTE A PERMISSÃO:::");
+         //   console.log(existPermission);
 
             if (!existPermission) {
                 return res.status(403).send({ message: "Você não tem autorização para este recurso." });
