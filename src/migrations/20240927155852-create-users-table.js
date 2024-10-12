@@ -61,9 +61,6 @@ module.exports = {
         }
       }
     );
-
-    // Define o valor inicial para o ID (PostgreSQL)
-    await queryInterface.sequelize.query("ALTER SEQUENCE users_id_seq RESTART WITH 5;");
   },
 
   async down(queryInterface, Sequelize) {

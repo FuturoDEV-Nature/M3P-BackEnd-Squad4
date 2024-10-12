@@ -40,9 +40,6 @@ module.exports = {
           type: Sequelize.DATE
         }
       });
-
-    // Define o valor inicial do id para começar a partir de 5
-    await queryInterface.sequelize.query("ALTER SEQUENCE locals_id_seq RESTART WITH 5;");
   },
 
   async down(queryInterface, Sequelize) {
