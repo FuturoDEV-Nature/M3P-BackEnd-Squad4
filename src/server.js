@@ -32,7 +32,7 @@ class Server {
 
   async initializeServer(app) {
     app.listen(PORT, () => // Altere aqui para usar a variável PORT
-      console.log(`Servidor executando na porta https://localhost:${PORT}`)
+      console.log(`Servidor executando na porta ${PORT}`)
     );
   }
 }

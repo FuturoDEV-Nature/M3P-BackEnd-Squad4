@@ -12,7 +12,7 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER
         },
-        nome: {
+        name: {
           type: Sequelize.STRING
         },
         localidade: {
@@ -39,8 +39,7 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE
         }
-      });
-  },
+      });  },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("locals");

@@ -23,7 +23,7 @@ class LocalController {
   async cadastrar(req, res) {
     userId(req, res, async () => {
       const userId = req.userId;
-      const { nome, localidade, descricao } = req.body;
+      const { name, localidade, descricao } = req.body;
 
       try {
         // Fazer requisição à API para obter latitude e longitude
@@ -32,15 +32,14 @@ class LocalController {
             localidade
           )}&format=json`
         );
-        console.log(":::DATA:::");
-        console.log(response.data.name);	
+		
         // Verifica se obteve dados de latitude e longitude
         if (response.data && response.data.length > 0) {
           const { lat, lon } = response.data[0];
 
           // Cria o novo local com latitude e longitude
           const novoLocal = await Local.create({
-            name: nome,
+            name,
             localidade,
             userId: userId,
             lat: lat, // Adiciona a latitude
@@ -111,13 +110,13 @@ class LocalController {
     userId(req, res, async () => {
       const userId = req.userId;
       const { local_id } = req.params;
-      const { nome, localidade, descricao, data_visita } = req.body;
+      const { name, localidade, descricao, data_visita } = req.body;
 
       try {
         // Atualiza o nome e o endereço na tabela de Locais da Natureza
         const localAtualizado = await Local.update(
           {
-            nome,
+            name,
             localidade: localidade,
             userId: userId,
           },
