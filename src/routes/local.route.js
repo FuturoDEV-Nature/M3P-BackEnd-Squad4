@@ -22,9 +22,7 @@ localRoutes.post(
                 schema: {
                   $name: "Nome do local",
                   $localidade: "Rua, complemento, bairro",  
-                  desc_flora: "tem flores silvestres",
-                  desc_fauna: "não tem cachorro do mato",
-                  
+                  descricao: "tem flores silvestres",
             }
         }
     */
