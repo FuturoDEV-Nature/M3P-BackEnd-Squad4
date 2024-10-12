@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.createTable("descriptions", {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: true,  // Para PostgreSQL, será tratado como SERIAL
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
@@ -40,10 +40,8 @@ module.exports = {
       },
     });
 
-    // Define o id para começar a partir de 5
-    await queryInterface.sequelize.query(
-      "ALTER TABLE descriptions AUTO_INCREMENT = 5;"
-    );
+    // Define o valor inicial do id para começar a partir de 5
+    await queryInterface.sequelize.query("ALTER SEQUENCE descriptions_id_seq RESTART WITH 5;");
   },
 
   async down(queryInterface, Sequelize) {

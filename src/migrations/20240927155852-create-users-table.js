@@ -8,7 +8,7 @@ module.exports = {
       {
         id: {
           allowNull: false,
-          autoIncrement: true,
+          autoIncrement: true,  // Isso será interpretado como SERIAL em PostgreSQL
           primaryKey: true,
           type: Sequelize.INTEGER
         },
@@ -24,18 +24,18 @@ module.exports = {
         email: {
           allowNull: false,
           type: Sequelize.STRING,
-          unique: true // Validação no BD para email único
+          unique: true
         },
         senha: {
           type: Sequelize.STRING,
           allowNull: false
         },
         cpf: {
-          type: Sequelize.STRING, // STRING para lidar com zeros à esquerda
+          type: Sequelize.STRING,
           allowNull: false,
-          unique: true, // Validação no BD para CPF único
+          unique: true,
           validate: {
-            len: [11, 11] // Validação para garantir que o CPF tenha exatamente 11 caracteres
+            len: [11, 11]
           }
         },
         data_nascimento: {
@@ -62,8 +62,8 @@ module.exports = {
       }
     );
 
-    // Define o id para começar a partir de 5
-    await queryInterface.sequelize.query("ALTER TABLE users AUTO_INCREMENT = 5;");
+    // Define o valor inicial para o ID (PostgreSQL)
+    await queryInterface.sequelize.query("ALTER SEQUENCE users_id_seq RESTART WITH 5;");
   },
 
   async down(queryInterface, Sequelize) {
