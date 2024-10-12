@@ -33,14 +33,14 @@ class LocalController {
           )}&format=json`
         );
         console.log(":::DATA:::");
-        console.log(response.data);
+        console.log(response.data.name);	
         // Verifica se obteve dados de latitude e longitude
         if (response.data && response.data.length > 0) {
           const { lat, lon } = response.data[0];
 
           // Cria o novo local com latitude e longitude
           const novoLocal = await Local.create({
-            nome,
+            name: nome,
             localidade,
             userId: userId,
             lat: lat, // Adiciona a latitude

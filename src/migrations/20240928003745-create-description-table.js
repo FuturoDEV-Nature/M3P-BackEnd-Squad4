@@ -30,15 +30,20 @@ module.exports = {
       descricao: {
         type: Sequelize.TEXT,
       },
-	  createdAt: {
-		allowNull: false,
-		type: Sequelize.DATE
-	  },
-	  updatedAt: {
-		allowNull: false,
-		type: Sequelize.DATE
-	  }
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
     });
+
+    // Define o id para começar a partir de 5
+    await queryInterface.sequelize.query(
+      "ALTER TABLE descriptions AUTO_INCREMENT = 5;"
+    );
   },
 
   async down(queryInterface, Sequelize) {
