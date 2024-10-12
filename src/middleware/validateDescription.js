@@ -1,9 +1,9 @@
 const validarDescription = (schema) => async (req, res, next) => {
-  if (!req.body.name) {
-    return res
-      .status(400)
-      .json({ error: "Digite o nome do local da natureza." });
-  }
+//   if (!req.body.name) {
+//     return res
+//       .status(400)
+//       .json({ error: "Digite o nome do local da natureza." });
+//   }
 
   if (!req.body.localidade) {
     return res.status(400).json({ error: "Informe uma localização, o endereço e a cidade " });

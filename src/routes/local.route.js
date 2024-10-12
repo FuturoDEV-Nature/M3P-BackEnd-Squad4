@@ -6,6 +6,7 @@ const localSchema = require("../schemas/localSchema");
 const validarLocal = require("../middleware/validateLocal");
 const validarDescription = require("../middleware/validateDescription");
 const descriptionSchema = require("../schemas/descriptionSchema");
+const { combineUsersLocalsDescriptions } = require("../middleware/userLocalDescription"); // Importa o middleware
 
 const localRoutes = new Router();
 
@@ -30,7 +31,8 @@ localRoutes.post(
   LocalController.cadastrar
 );
 
-localRoutes.get("/", auth, LocalController.listar);
+// Rota para listar locais com o middleware de combinação
+localRoutes.get("/", auth, combineUsersLocalsDescriptions, LocalController.listar);
 
 localRoutes.put(
   "/:local_id",

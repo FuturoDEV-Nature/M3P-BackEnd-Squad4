@@ -25,7 +25,7 @@ const Description = connection.define("descriptions", {
   },
 
   descricao: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   }
 });
 
