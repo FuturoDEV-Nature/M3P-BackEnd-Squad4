@@ -19,6 +19,9 @@ const Local = connection.define("locals", {
       key: "id",
     },
   },
+  descricao: {
+	type: DataTypes.TEXT
+  },
   lat: {
     type: DataTypes.STRING,
   },

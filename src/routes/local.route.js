@@ -4,15 +4,13 @@ const { auth } = require("../middleware/auth");
 const LocalController = require("../controllers/LocalController");
 const localSchema = require("../schemas/localSchema");
 const validarLocal = require("../middleware/validateLocal");
-const validarDescription = require("../middleware/validateDescription");
-const descriptionSchema = require("../schemas/descriptionSchema");
+
 
 const localRoutes = new Router();
 
 localRoutes.post(
   "/",
   auth,
-  validarLocal(localSchema),
   /*  
             #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {
@@ -35,7 +33,6 @@ localRoutes.get("/", auth, LocalController.listar);
 localRoutes.put(
   "/:local_id",
   auth,
-  validarDescription(descriptionSchema),
   /*
              #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {
