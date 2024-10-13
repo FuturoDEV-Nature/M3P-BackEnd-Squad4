@@ -25,6 +25,9 @@ module.exports = {
 				key: "id"
 			}
 		  },
+		  descricao: {
+			type: Sequelize.TEXT
+		  },
 		  lat: {
 			type: Sequelize.STRING
 		  },
