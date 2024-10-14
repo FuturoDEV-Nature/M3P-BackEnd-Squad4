@@ -18,8 +18,7 @@
 
 // Método para cadastrar um Local da Natureza
 async cadastrar(req, res) {
-    userId(req, res, async () => {
-        const userId = req.userId;
+        const {userId} = req.userId;
         const { name, localidade, descricao, lat, lon } = req.body;
 
         // Validação básica dos dados
@@ -43,8 +42,8 @@ async cadastrar(req, res) {
             console.error("Erro ao cadastrar o local:", error);
             res.status(500).json({ error: "Erro ao cadastrar o local." });
         }
-    });
-}
+    };
+
 
 
 

@@ -8,7 +8,8 @@ const userSchema = yup.object().shape({
   sexo: yup.string().nullable(),
   senha: yup.string().required(),
   data_nascimento: yup.date().required(),
-  endereco: yup.string().required()		// CEP (?) 
+  cep: yup.string().required(),
+  endereco: yup.string().required()		
 });
 
 module.exports = userSchema;
