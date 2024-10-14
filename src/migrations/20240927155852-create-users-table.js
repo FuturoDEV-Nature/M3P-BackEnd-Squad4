@@ -38,6 +38,10 @@ module.exports = {
 			  len: [11, 11] // Validação para garantir que o CPF tenha exatamente 11 caracteres
 			}
 		  },
+		  cep: {
+			allowNull: false,
+			type: Sequelize.STRING
+		  },
 		  data_nascimento: {
 			allowNull: false,
 			type: Sequelize.DATE
@@ -49,7 +53,7 @@ module.exports = {
 		  isLogged:{
 			allowNull: false,
 			type: Sequelize.BOOLEAN,
-			defaultValue: "false"
+			defaultValue: false
 		  },
 		  createdAt: {
 			allowNull: false,

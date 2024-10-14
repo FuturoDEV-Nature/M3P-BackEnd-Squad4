@@ -22,11 +22,14 @@ const User = connection.define('users', {
         type: DataTypes.STRING,
     },
 	cpf: {
-		type: DataTypes.NUMBER
+		type: DataTypes.STRING
 		
 	},
 	data_nascimento: {
 		type: DataTypes.DATE
+	},
+	cep: {
+		type: DataTypes.STRING
 	},
 	endereco:{
 		type: DataTypes.STRING
