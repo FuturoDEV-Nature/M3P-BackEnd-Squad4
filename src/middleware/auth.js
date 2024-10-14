@@ -4,20 +4,17 @@ async function auth(req, res, next) {
   try {
     console.log("Entramos no Middleware auth.js");
 
-    const { authorization } = req.headers.authorization;
+    const { authorization } = req.headers;
 	console.log("::: AUTH :::")
 	console.log (authorization)
 	
     // Verifica se o cabeçalho Authorization existe e começa com "Bearer"
-    if (!authorization || !authorization.startsWith("Bearer ")) {
+    if (!authorization) {
       return res.status(401).json({
         error: "Autenticação Falhou!",
         cause: "Token não encontrado ou mal formatado",
       });
     }
-
-    // Extrair o token removendo "Bearer " da string
-    const token = authorization.split(" ")[1];
 
     // Verificar o token usando jwt.verify
     req["payload"] = verify(token, process.env.SECRET_JWT);
