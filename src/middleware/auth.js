@@ -6,9 +6,9 @@ async function auth(req, res, next) {
 
     const { token } = req.headers;
 	// console.log("::: AUTH :::")
-	// console.log (authorization)
+	// console.log (token)
 	
-    // Verifica se o cabeçalho Authorization existe e começa com "Bearer"
+    // Verifica se existe o token
     if (!token) {
       return res.status(401).json({
         error: "Autenticação Falhou!",
@@ -16,10 +16,9 @@ async function auth(req, res, next) {
       });
     }
 
+	console.log("::REQ::",req)
     // Verificar o token usando jwt.verify
     req["payload"] = verify(token, process.env.SECRET_JWT);
-	const printPayload =  req["payload"]
-	console.log("::PAYLOAD::",printPayload)
 
     next();
   } catch (error) {
