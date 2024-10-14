@@ -2,9 +2,10 @@ const yup = require("yup");
 
 // Atributos necessários da tabela LOCAIS DE PERSERVAÇÃO
 const localSchema = yup.object().shape({
-  name: yup.string().required(),
-  localidade: yup.string().required(),	//CEP, complemento... não sei se é a melhor forma.
+  nomeLocal: yup.string().required(),
+  localizacao: yup.string().required(),
   descricao: yup.string().required(),
+  cep: yup.string().required(),
   userId: yup.number().integer(),
   lat: yup.string(),		
   lon: yup.string()

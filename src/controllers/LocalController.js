@@ -19,22 +19,24 @@
 // Método para cadastrar um Local da Natureza
 async cadastrar(req, res) {
    //     const {userId} = req.userId;
-        const { name, localidade, descricao, lat, lon, userId } = req.body;
+        
+
+		console.log(":req.body.local:",req.body)
 
         // Validação básica dos dados
-        if (!name || !localidade || !descricao || lat === undefined || lon === undefined) {
+        if (!req.body.nomeLocal || !req.body.localizacao || !req.body.descricao) {
             return res.status(400).json({ error: "Dados incompletos. Verifique os campos obrigatórios." });
         }
-console.log(req.body)
         try {
             // Cria o novo local com latitude e longitude	
             const novoLocal = await Local.create({
-                name,
-                localidade,
-                userId,
-				descricao,
-                lat,
-                lon
+                name: req.body.nomeLocal,
+                localizacao: req.body.localizacao,
+                userId: req.body.idUsuario,
+				cep: req.body.cep,
+				descricao: req.body.descricao,
+                lat: req.body.latitude,
+                lon: req.body.longitude
             });
 
             res.status(201).json({ local: novoLocal});

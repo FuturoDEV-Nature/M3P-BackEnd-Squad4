@@ -15,7 +15,7 @@ module.exports = {
 		  name: {
 			type: Sequelize.STRING
 		  },
-		  localidade: {
+		  localizacao: {
 			type: Sequelize.STRING
 		  },
 		  userId: {
@@ -27,6 +27,9 @@ module.exports = {
 		  },
 		  descricao: {
 			type: Sequelize.TEXT
+		  },
+		  cep: {
+			type: Sequelize.STRING
 		  },
 		  lat: {
 			type: Sequelize.STRING

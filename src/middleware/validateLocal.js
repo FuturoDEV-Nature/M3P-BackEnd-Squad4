@@ -1,12 +1,15 @@
 const validarLocal = (schema) => async (req, res, next) => {
-  if (!req.body.name) {
+  if (!req.body.nomeLocal) {
     return res
       .status(400)
       .json({ error: "Digite o nome do local da natureza." });
   }
 
-  if (!req.body.localidade) {
+  if (!req.body.localizacao) {
     return res.status(400).json({ error: "Informe a localização. ex: Praia Mole - Florianópolis" });
+  }
+  if (!req.body.descricao) {
+    return res.status(400).json({ error: "Informe uma descrição do local da natureza" });
   }
 
   try {
