@@ -4,9 +4,10 @@ async function auth(req, res, next) {
   try {
     console.log("Entramos no Middleware auth.js");
 
-    const { authorization } = req.headers;
+    const { authorization } = req.headers.authorization;
 	console.log("::: AUTH :::")
-	console.log (req.headers)
+	console.log (authorization)
+	
     // Verifica se o cabeçalho Authorization existe e começa com "Bearer"
     if (!authorization || !authorization.startsWith("Bearer ")) {
       return res.status(401).json({

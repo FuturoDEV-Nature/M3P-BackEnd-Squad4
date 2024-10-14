@@ -1,6 +1,6 @@
 	const { default: axios } = require("axios");
 	const Local = require("../models/Local");
-//	const { userId } = require("../middleware/userId");
+	const { userId } = require("../middleware/userId");
 
 	class LocalController {
 		// Método para listar todos os Locais da Natureza do Usuário
