@@ -18,7 +18,7 @@
 
 // Método para cadastrar um Local da Natureza
 async cadastrar(req, res) {
-        const userId = req.userId;
+        const {userId} = req.userId;
         const { name, localidade, descricao, lat, lon } = req.body;
 
         // Validação básica dos dados
