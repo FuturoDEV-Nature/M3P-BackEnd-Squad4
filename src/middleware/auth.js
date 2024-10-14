@@ -6,7 +6,7 @@ async function auth(req, res, next) {
 
     const { authorization } = req.headers;
 	console.log("::: AUTH :::")
-	console.log (authorization)
+	console.log (req.headers)
     // Verifica se o cabeçalho Authorization existe e começa com "Bearer"
     if (!authorization || !authorization.startsWith("Bearer ")) {
       return res.status(401).json({
