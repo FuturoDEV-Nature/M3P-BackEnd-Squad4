@@ -4,12 +4,12 @@ async function auth(req, res, next) {
   try {
     console.log("Entramos no Middleware auth.js");
 
-    const { authorization } = req.headers;
-	console.log("::: AUTH :::")
-	console.log (authorization)
+    const { token } = req.headers;
+	// console.log("::: AUTH :::")
+	// console.log (authorization)
 	
     // Verifica se o cabeçalho Authorization existe e começa com "Bearer"
-    if (!authorization) {
+    if (!token) {
       return res.status(401).json({
         error: "Autenticação Falhou!",
         cause: "Token não encontrado ou mal formatado",
