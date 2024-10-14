@@ -6,8 +6,9 @@ async function auth(req, res, next) {
 
     // Pegando o cabeçalho Authorization
     const authHeader = req.headers.authorization;
-
-    // Verifica se o cabeçalho Authorization existe e se está no formato correto
+	console.log("token",authHeader)
+    
+	// Verifica se o cabeçalho Authorization existe e se está no formato correto
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         error: "Autenticação Falhou!",
@@ -17,9 +18,11 @@ async function auth(req, res, next) {
 
     // Extraindo o token removendo o prefixo 'Bearer '
     const token = authHeader.split(" ")[1];
+	console.log("token sem Bearer",token)
 
     // Verificar o token usando jwt.verify
     req.payload = verify(token, process.env.SECRET_JWT);
+	console.log(req.payload)
 
     // Se tudo estiver correto, continuar para o próximo middleware
     next();
