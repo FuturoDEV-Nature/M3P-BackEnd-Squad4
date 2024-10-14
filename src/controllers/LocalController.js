@@ -1,11 +1,11 @@
 	const { default: axios } = require("axios");
 	const Local = require("../models/Local");
-	const { userId } = require("../middleware/userId");
+//	const { userId } = require("../middleware/userId");
 
 	class LocalController {
 		// Método para listar todos os Locais da Natureza do Usuário
 		async listar(req, res) {
-			const { userId } = req.body;
+//			const { userId } = req.body;
 	
 			try {
 				const locais = await Local.findAll({ where: { userId } });
@@ -18,8 +18,8 @@
 
 // Método para cadastrar um Local da Natureza
 async cadastrar(req, res) {
-        const {userId} = req.userId;
-        const { name, localidade, descricao, lat, lon } = req.body;
+   //     const {userId} = req.userId;
+        const { name, localidade, descricao, lat, lon, userId } = req.body;
 
         // Validação básica dos dados
         if (!name || !localidade || !descricao || lat === undefined || lon === undefined) {
@@ -27,7 +27,7 @@ async cadastrar(req, res) {
         }
 
         try {
-            // Cria o novo local com latitude e longitude
+            // Cria o novo local com latitude e longitude	
             const novoLocal = await Local.create({
                 name,
                 localidade,
@@ -47,7 +47,7 @@ async cadastrar(req, res) {
 
 
 
-	// Método para mapear um local do Usuário pelo localidade [ incompleto ]
+	// Método para mapear um local do Usuário pelo localidade [ incompleto! ]
 	async mapear(req, res) {
 		// Chamada do middleware para verificar o token JWT
 		userId(req, res, async () => {
