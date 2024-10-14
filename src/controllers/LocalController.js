@@ -25,7 +25,7 @@ async cadastrar(req, res) {
         if (!name || !localidade || !descricao || lat === undefined || lon === undefined) {
             return res.status(400).json({ error: "Dados incompletos. Verifique os campos obrigatórios." });
         }
-
+console.log(req.body)
         try {
             // Cria o novo local com latitude e longitude	
             const novoLocal = await Local.create({

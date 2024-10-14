@@ -18,6 +18,8 @@ async function auth(req, res, next) {
 
     // Verificar o token usando jwt.verify
     req["payload"] = verify(token, process.env.SECRET_JWT);
+	const printPayload =  req["payload"]
+	console.log("::PAYLOAD::",printPayload)
 
     next();
   } catch (error) {
