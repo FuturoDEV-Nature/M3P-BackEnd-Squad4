@@ -9,8 +9,8 @@ const validarLocal = require("../middleware/validateLocal");
 const localRoutes = new Router();
 
 localRoutes.post(
-  "/",
-  auth,
+  "/cadastrar-local",
+  auth, validarLocal(localSchema),
   /*  
             #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {
