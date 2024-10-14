@@ -29,8 +29,8 @@ class UserController {
     // Método criar um novo usuário
     async createNewUser(request, response) {
         try {
-            const { email, name, senha, sexo, cpf, data_nascimento, endereco } = request.body;
-            if (!email || !senha || !sexo || !cpf || !data_nascimento || !endereco) {
+            const { email, name, senha, sexo, cpf, data_nascimento, cep, endereco } = request.body;
+            if (!email || !senha || !sexo || !cpf || !data_nascimento || !cep || !endereco) {
                 return response.status(400).send({ message: "Todos os campos são obrigatórios" });
             }
             // Transformar sexo em lowercase
@@ -45,6 +45,7 @@ class UserController {
                 sexo: sexoLower,
                 cpf,
                 data_nascimento,
+				cep,
                 endereco
             });
 

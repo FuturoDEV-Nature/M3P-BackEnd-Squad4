@@ -38,6 +38,10 @@ module.exports = {
 			  len: [11, 11] // Validação para garantir que o CPF tenha exatamente 11 caracteres
 			}
 		  },
+		  cep: {
+			allowNull: false,
+			type: Sequelize.STRING
+		  },
 		  data_nascimento: {
 			allowNull: false,
 			type: Sequelize.DATE
