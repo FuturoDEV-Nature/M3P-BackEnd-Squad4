@@ -127,7 +127,7 @@ module.exports = {
 				createdAt: new Date(),
                 updatedAt: new Date(),
 			},{
-				id: 17,
+				id: 19,
 				permissionId: "7",		// ler_locais
 				roleId: "2",			// user
 				createdAt: new Date(),
