@@ -60,7 +60,7 @@ class UserController {
     async updateUser(request, response) {
         try {
             const { id } = request.params;
-            const { email, name, senha, data_nascimento, endereco } = request.body;
+            const { email, name, senha, data_nascimento, cep,  endereco } = request.body;
 
             const user = await User.findByPk(id);
             if (!user) {
@@ -72,6 +72,7 @@ class UserController {
                 name,
                 senha,
                 data_nascimento,
+				cep,
                 endereco
             });
 
