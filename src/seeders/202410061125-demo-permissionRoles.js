@@ -113,7 +113,27 @@ module.exports = {
 				roleId: "1",		// admin
                 createdAt: new Date(),
                 updatedAt: new Date(),
-            }
+            },
+			{
+				id: 17,
+				permissionId: "5",		// ler_usuario
+				roleId: "2",			// user
+				createdAt: new Date(),
+                updatedAt: new Date(),
+			},{
+				id: 18,
+				permissionId: "1",		// criar_usuario
+				roleId: "2",			// user
+				createdAt: new Date(),
+                updatedAt: new Date(),
+			},{
+				id: 17,
+				permissionId: "7",		// ler_locais
+				roleId: "2",			// user
+				createdAt: new Date(),
+                updatedAt: new Date(),
+			}
+			
 
         ]);
     },
