@@ -13,7 +13,7 @@ router.get("/", hasPermission(["ler_usuarios"]), userController.findAll);
 router.get("/:id", hasPermission(["ler_usuarios"]), userController.findById);
 router.post(
   "/", 
-  //hasPermission(["criar_usuario"]),
+  hasPermission(["criar_usuario"]),
   validarUser(userSchema),
   /*  
             #swagger.tags = ['Usuário'],
