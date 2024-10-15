@@ -1,0 +1,382 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NATUREZA 365",
+    "description": "API do projeto avaliativo do módulo 01",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Token de Autenticação"
+    }
+  },
+  "paths": {
+    "/login/": {
+      "post": {
+        "tags": ["Login"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Tela de login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "teste123@gmail.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "teste123"
+                }
+              },
+              "required": ["email", "senha"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "post": {
+        "tags": ["Usuário"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Adiciona um novo Usuário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome completo"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "feminino, masculino ou outros"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "10987654321"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "teste@gmail.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "123"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "1996-12-15"
+                }
+              },
+              "required": ["nome", "cpf", "email", "senha"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome completo"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "feminino, masculino ou outros"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "10987654321"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "teste@gmail.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "123"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "example": "1996-12-15"
+                }
+              },
+              "required": ["nome", "cpf", "email", "senha"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/": {
+      "post": {
+        "tags": ["Local da Natureza"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Adiciona um novo local da natureza",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do local"
+                },
+                "localidade": {
+                  "type": "string",
+                  "example": "Rua, complemento, bairro"
+                },
+                "desc_flora": {
+                  "type": "string",
+                  "example": "tem flores silvestres"
+                },
+                "desc_fauna": {
+                  "type": "string",
+                  "example": "não tem cachorro do mato"
+                }
+              },
+              "required": ["nome", "localidade"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/{local_id}": {
+      "put": {
+        "tags": ["Local da Natureza"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Adiciona um novo local da natureza",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do local"
+                },
+                "localidade": {
+                  "type": "string",
+                  "example": "Rua, complemento, bairro"
+                },
+                "data_visita": {
+                  "type": "string",
+                  "example": "2024-04-20"
+                },
+                "desc_flora": {
+                  "type": "string",
+                  "example": "tem flores silvestres"
+                },
+                "desc_fauna": {
+                  "type": "string",
+                  "example": "não tem cachorro do mato"
+                }
+              },
+              "required": ["nome", "localidade", "data_visita"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/local/{local_id}/maps": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "local_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ]
+}
