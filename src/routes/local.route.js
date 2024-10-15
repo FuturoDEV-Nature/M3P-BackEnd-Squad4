@@ -10,7 +10,8 @@ const localRoutes = new Router();
 
 localRoutes.post(
   "/",
-  auth,
+  auth, 
+  validarLocal(localSchema),
   /*  
             #swagger.tags = ['Local da Natureza'],
             #swagger.parameters['body'] = {

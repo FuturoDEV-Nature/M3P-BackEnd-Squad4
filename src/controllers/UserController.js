@@ -30,6 +30,7 @@ class UserController {
     async createNewUser(request, response) {
         try {
             const { email, name, senha, sexo, cpf, data_nascimento, cep, endereco } = request.body;
+			console.log(":req.body.user",request.body)
             if (!email || !senha || !sexo || !cpf || !data_nascimento || !cep || !endereco) {
                 return response.status(400).send({ message: "Todos os campos são obrigatórios" });
             }
