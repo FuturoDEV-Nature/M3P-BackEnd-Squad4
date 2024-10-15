@@ -9,10 +9,10 @@ module.exports = {
   database: process.env.DATABASE, //Qual o nome do seu database no postgres;
   port: process.env.PORT, //Qual porta do seu postgres (Normalmente é a 5432);
   dialectOptions: {
-	ssl: {
-		rejectUnauthorized: false,
-		require: true
-	}
+	// ssl: {
+	// 	rejectUnauthorized: false,
+	// 	require: true
+	// }
   },	
   pool: {
 	max: 5,

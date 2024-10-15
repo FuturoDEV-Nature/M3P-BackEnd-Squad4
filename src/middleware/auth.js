@@ -5,7 +5,7 @@ async function auth(req, res, next) {
     console.log("Entramos no Middleware auth.js");
 
     // Pegando o cabeçalho Authorization
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers;
 	console.log("token",authHeader)
     
 	// Verifica se o cabeçalho Authorization existe e se está no formato correto
